@@ -16,5 +16,5 @@ import { signup,signin } from "../controller/auth";
 const authrouter = Router();
 
 authrouter.post("/signup",signup)
-authrouter.get('/signin',signin)
+authrouter.post('/signin',signin)
 export default authrouter;

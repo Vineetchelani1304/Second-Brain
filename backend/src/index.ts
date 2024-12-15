@@ -2,8 +2,9 @@ import express from 'express';
 import mongoose from 'mongoose';
 import authrouter from './routes/auth.routest';
 import content from './routes/content.route';
-
+import cors from 'cors'
 const app = express();
+app.use(cors());
 const port = 8888;
 mongoose.connect("mongodb+srv://vineetchelani:vineetttt@vineet.3wknhd0.mongodb.net/secondbrain")
 app.use(express.json());

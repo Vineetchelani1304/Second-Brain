@@ -8,7 +8,7 @@ interface CardProps {
 }
 const Card = (props: CardProps) => {
     return (
-        <div className=" min-h-[270px] max-h-max p-4 text-slate-200  min-w-[220px] max-w-[220px] bg-gray-900 rounded-md shadow-md border">
+        <div className=" min-h-[270px] max-h-max p-4 text-slate-200  min-w-[220px] max-w-[220px] bg-black outline-white rounded-2xl shadow-md border">
             <div className='flex justify-between'>
                 <div className=" flex justify-evenly gap-1 items-center">
                     {props.icon}

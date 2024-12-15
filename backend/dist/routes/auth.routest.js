@@ -9,5 +9,5 @@ const express_1 = require("express");
 const auth_1 = require("../controller/auth");
 const authrouter = (0, express_1.Router)();
 authrouter.post("/signup", auth_1.signup);
-authrouter.get('/signin', auth_1.signin);
+authrouter.post('/signin', auth_1.signin);
 exports.default = authrouter;
