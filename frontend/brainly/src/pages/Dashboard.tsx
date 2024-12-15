@@ -9,7 +9,7 @@ const Dashboard: React.FC = () => {
   const [modalOpen, setModal] = useState(true)
   // const [bar, SetBar] = useState(true)
   return (
-    <div className=" bg-slate-200">
+    <div className=" bg-slate-950">
       <Sidebar /*bar={bar} setBar={() => {
         SetBar(e => !e)
       }}*/ />
@@ -18,7 +18,7 @@ const Dashboard: React.FC = () => {
           setModal(false)
         }} />
         <div className=" flex  justify-between">
-          <h2 className=" font-semibold text-3xl ml-1">All Content</h2>
+          <h2 className=" font-semibold text-3xl ml-1 text-slate-200">All Content</h2>
           <div className=" flex justify-end gap-3">
             <Button variant="primary" text="Add Content" startIcon={<Plusicon />} onClick={() => setModal(true)} />
             <Button variant="secondry" text="Share Brain" startIcon={<Share />} />
