@@ -80,8 +80,8 @@ const deleteContent = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         });
         return;
     }
-    yield db_1.contentmodel.deleteMany({
-        contentId,
+    yield db_1.contentmodel.deleteOne({
+        _id: contentId,
         //@ts-ignore
         userId: req.userId
     });

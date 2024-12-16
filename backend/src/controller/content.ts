@@ -71,8 +71,8 @@ export const deleteContent = async (req: Request, res: Response) => {
         })
         return;
     }
-    await contentmodel.deleteMany({
-        contentId,
+    await contentmodel.deleteOne({
+        _id:contentId,
         //@ts-ignore
         userId: req.userId
     })
