@@ -54,7 +54,7 @@ useEffect(() => {
 }, [props.type]); // Re-run the effect if the `type` changes
 
 return (
-    <div className="max-w-[300px]  w-full p-4 text-slate-200 bg-black rounded-2xl shadow-md border border-gray-700">
+    <div className="max-w-[300px] hover:scale-105 transition-all duration-500  w-full p-4 text-slate-200 bg-black rounded-2xl shadow-md border border-gray-700">
         <div className="flex justify-between items-center mb-4">
             <div className="flex justify-start items-center gap-2">
                 <span className="font-semibold text-xl">{props.title}</span>

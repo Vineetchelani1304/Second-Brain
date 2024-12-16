@@ -31,7 +31,7 @@ export const share = async (req: Request, res: Response) => {
         })
         res.json({
             message: "share enable ",
-            link: shareablelink
+            data: shareablelink
         })
         return;
     }
