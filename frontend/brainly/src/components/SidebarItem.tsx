@@ -2,7 +2,7 @@ import { ReactElement } from "react"
 
 
 const SidebarItem = ({text,icons}:{
-    text: "Youtube" | "Tweet",
+    text: string,
     icons:ReactElement
 }) => {
   return (

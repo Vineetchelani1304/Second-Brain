@@ -8,7 +8,7 @@ import Sidebar from "../components/Sidebar";
 import axios from "axios";
 
 const Dashboard: React.FC = () => {
-    const [modalOpen, setModal] = useState(true)
+    const [modalOpen, setModal] = useState(false)
 
     // const [bar, SetBar] = useState(true)
     const [content, setContent] = useState([]);
