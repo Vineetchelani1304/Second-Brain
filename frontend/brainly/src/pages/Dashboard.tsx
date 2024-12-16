@@ -3,12 +3,33 @@ import { Share } from "../icons/share";
 import { Plusicon } from "../icons/Plusicon";
 import Card from "../components/Card";
 import CreateContent from "../components/CreateContent";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
+import axios from "axios";
 
 const Dashboard: React.FC = () => {
     const [modalOpen, setModal] = useState(true)
     // const [bar, SetBar] = useState(true)
+    const [content, setContent] = useState([]);
+    useEffect(() => {
+        // Wrap the API call in an async function
+        const fetchContent = async () => {
+            try {
+                const response = await axios.get("http://localhost:8888/content/getContent", {
+                    headers: {
+                        Authorization: localStorage.getItem("token"),
+                    },
+                });
+                console.log(response)
+                console.log("Fetched content:", response.data.data);
+                setContent(response.data.data); // Set the fetched content
+            } catch (error) {
+                console.error("Error fetching content:", error);
+            }
+        };
+
+        fetchContent(); // Call the async function
+    }, []);
     return (
         <div className=" bg-black">
             <Sidebar /*bar={bar} setBar={() => {
@@ -26,9 +47,20 @@ const Dashboard: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="flex gap-4 mt-4">
-                    <Card title="Add Content" type="youtube" link="https://www.youtube.com/watch?v=kyjg5kX4pT0&list=RDkyjg5kX4pT0&start_radio=1" />
-                    <Card title="Add Content" type="twitter" link="https://x.com/gunsnrosesgirl3/status/1867452966103375970" />
+                <div className="flex flex-wrap gap-4 mt-4">
+                    {content.length === 0 ? (
+                        <p className="text-white">No content available.</p>
+                    ) : (
+                        content.map((item: any) => (
+                            <Card
+                                // key={item._id}
+                                title={item.title}
+                                link={item.link}
+                                type={item.type}
+                                // cardId={}
+                            />
+                        ))
+                    )}
                 </div>
             </div>
         </div>

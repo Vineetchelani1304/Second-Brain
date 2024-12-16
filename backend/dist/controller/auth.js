@@ -76,7 +76,7 @@ const signin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                     }, JWT_PASS);
                     res.status(200).json({
                         message: "user loged in",
-                        data: token,
+                        token: token,
                     });
                 }
             }

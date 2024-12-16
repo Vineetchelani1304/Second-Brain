@@ -13,7 +13,7 @@ exports.deleteContent = exports.getContent = exports.createContent = void 0;
 const db_1 = require("../db");
 const createContent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { link, type, title, tags } = req.body;
+        const { link, type, title } = req.body;
         //@ts-ignore
         const userId = req.userId;
         // Validate required fields
@@ -28,7 +28,7 @@ const createContent = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             link,
             type,
             title,
-            tags,
+            // tags,
             //@ts-ignore
             userId: req.userId,
         });
@@ -59,12 +59,12 @@ const getContent = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             });
             return;
         }
-        const content = yield db_1.contentmodel.find().populate({
+        const content = yield db_1.contentmodel.find({ userId }).populate({
             path: "userId",
             select: "username password"
         });
         res.status(200).json({
-            content
+            data: content
         });
     }
     catch (error) {

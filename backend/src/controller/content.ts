@@ -3,7 +3,7 @@ import { contentmodel } from '../db';
 
 export const createContent = async (req: Request, res: Response) => {
     try {
-        const { link, type, title, tags } = req.body;
+        const { link, type, title } = req.body;
         //@ts-ignore
         const userId = req.userId;
 
@@ -20,7 +20,7 @@ export const createContent = async (req: Request, res: Response) => {
             link,
             type,
             title,
-            tags,
+            // tags,
             //@ts-ignore
             userId: req.userId,
         });
@@ -50,12 +50,12 @@ export const getContent = async (req: Request, res: Response) => {
             })
             return;
         }
-        const content = await contentmodel.find().populate({
+        const content = await contentmodel.find({userId}).populate({
             path: "userId",
             select: "username password"
         })
         res.status(200).json({
-            content
+            data: content
         })
     } catch (error) {
         console.log('Error getting content:', error);

@@ -46,7 +46,7 @@ const usermodel = new mongoose_1.Schema({
 });
 exports.UserModel = (0, mongoose_1.model)("User", usermodel);
 // *****************************//
-const contentTypes = ['image', 'video', 'article', 'audio']; // Extend as needed
+const contentTypes = ['Youtube', 'Twitter']; // Extend as needed
 const contentSchema = new mongoose_1.Schema({
     link: { type: String, required: true },
     type: { type: String, enum: contentTypes, required: true },

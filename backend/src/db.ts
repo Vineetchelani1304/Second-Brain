@@ -14,7 +14,7 @@ export const UserModel = model("User", usermodel);
 
 // *****************************//
 
-const contentTypes = ['image', 'video', 'article', 'audio']; // Extend as needed
+const contentTypes = ['Youtube','Twitter']; // Extend as needed
 
 const contentSchema = new Schema({
     link: { type: String, required: true },

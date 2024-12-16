@@ -62,7 +62,7 @@ export const signin= async(req:Request, res:Response)=>{
                 },JWT_PASS)
                 res.status(200).json({
                     message:"user loged in",
-                    data:token,
+                    token:token,
                 })}
             }
             else {
