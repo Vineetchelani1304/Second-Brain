@@ -118,9 +118,15 @@ const ShareContent = ({ isOpen, setIsOpen }: ShareLinkProps) => {
                 <div className="text-white fixed top-0 left-0 flex justify-center items-center h-screen w-screen backdrop-blur-sm">
                     <div className="bg-black border rounded-2xl p-6 px-8 shadow-lg">
                         {/* Close Button */}
+                        
+                        <div className=" flex  items-center justify-between mb-4">
+                        <h1 className=" font-semibold text-xl">
+                            Share Link
+                        </h1>
                         <div className="flex justify-end cursor-pointer" onClick={setIsOpen}>
                             <Cross />
                         </div>
+                    </div>
 
                         {/* Link Display */}
                         <div className="bg-gray-700 text-center text-white p-4 rounded-lg mt-4">

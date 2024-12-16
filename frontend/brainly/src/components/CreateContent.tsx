@@ -63,11 +63,16 @@ const CreateContent = ({ open, onClose }: create) => {
     }
 
     return (<div>
-        {open && <div className=" text-white fixed top-0 left-0 flex justify-center opacity-100 backdrop-blur-sm h-screen w-screen absolute">
+        {open && <div className=" text-white top-0 left-0 flex justify-center opacity-100 backdrop-blur-sm h-screen w-screen absolute">
             <div className=" flex flex-col justify-center  ">
                 <span className="bg-black border rounded-2xl p-4 px-6">
-                    <div className=" flex justify-end cursor-pointer" onClick={onClose}>
-                        <Cross />
+                    <div className=" flex  items-center justify-between mb-4">
+                        <h1 className=" font-semibold text-xl">
+                            Add Content
+                        </h1>
+                        <div className=" flex justify-end cursor-pointer" onClick={onClose}>
+                            <Cross />
+                        </div>
                     </div>
                     <div className=" flex flex-col gap-4 ">
                         <label htmlFor="title" className=" font-semibold">Title</label>
@@ -95,3 +100,5 @@ const CreateContent = ({ open, onClose }: create) => {
 }
 
 export default CreateContent
+
+
