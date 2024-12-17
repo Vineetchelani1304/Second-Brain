@@ -27,8 +27,7 @@ export const userMiddleware = (req: Request, res: Response, next: NextFunction):
         next();  // Proceed to the next middleware or route handler
     } catch (error) {
         res.status(403).json({
-            message: "Invalid or expired token"+error,
-            
+            message: "Invalid or expired token"+error,   
         });
         return 
     }

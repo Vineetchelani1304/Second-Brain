@@ -6,11 +6,13 @@ import Button from "../components/Button";
 import { Plusicon } from "../icons/Plusicon";
 import Sidebar from "../components/Sidebar";
 import { Share } from "../icons/share";
+import ShareContent from "../components/ShareContent";
 
 const Dashboard: React.FC = () => {
     const [modalOpen, setModal] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [content, setContent] = useState([]);
+    const [filter, setFilter] = useState("All");
 
     // Fetch the content initially
     const fetchContent = async () => {
@@ -26,7 +28,6 @@ const Dashboard: React.FC = () => {
         }
     };
 
-    // **Delete content and update state without refresh**
     const deleteContent = async (contentId: string) => {
         try {
             const response = await axios.delete("http://localhost:8888/content/deleteContent", {
@@ -36,7 +37,6 @@ const Dashboard: React.FC = () => {
                 data: { contentId },
             });
             console.log("Content deleted successfully:", response.data);
-            // Remove the deleted content from the state
             setContent(content.filter((item) => item._id !== contentId));
         } catch (error) {
             console.error("Error deleting content:", error);
@@ -44,22 +44,24 @@ const Dashboard: React.FC = () => {
         }
     };
 
-    // **Add new content and update state without refresh**
     const addContent = (newContent: any) => {
-        setContent([...content, newContent]); // Update state with the new content
+        setContent([...content, newContent]);
     };
 
     useEffect(() => {
-        fetchContent(); // Load content initially
+        fetchContent(); 
     }, []);
+
+    const filteredContent = filter === "All" ? content : content.filter((item) => item.type === filter);
 
     return (
         <div className="bg-black h-screen flex">
-            <Sidebar />
+            <Sidebar setFilter={setFilter} /> {/* Pass setFilter to Sidebar */}
             <div className="flex-1 h-screen pt-2 px-3 ml-[15%] overflow-auto">
                 <CreateContent open={modalOpen} onClose={() => setModal(false)} onContentAdded={addContent} />
+                <ShareContent isOpen={isOpen} setIsOpen={() =>setIsOpen(false)} />
                 <div className="flex justify-between">
-                    <h2 className="font-semibold text-3xl ml-1 text-slate-200">All Content</h2>
+                    <h2 className="font-semibold text-3xl ml-1 text-slate-200">{filter} Content</h2>
                     <div className="flex justify-end gap-3">
                         <Button
                             variant="primary"
@@ -76,17 +78,17 @@ const Dashboard: React.FC = () => {
                     </div>
                 </div>
                 <div className="flex flex-wrap gap-4 mt-6">
-                    {content.length === 0 ? (
+                    {filteredContent.length === 0 ? (
                         <p className="text-white font-semibold text-xl">No content available.</p>
                     ) : (
-                        content.map((item: any) => (
+                        filteredContent.map((item: any) => (
                             <Card
                                 key={item._id}
                                 title={item.title}
                                 link={item.link}
                                 type={item.type}
                                 cardId={item._id}
-                                onDelete={deleteContent} // Pass delete function as prop
+                                onDelete={deleteContent}
                             />
                         ))
                     )}
@@ -97,7 +99,3 @@ const Dashboard: React.FC = () => {
 };
 
 export default Dashboard;
-
-
-
-
