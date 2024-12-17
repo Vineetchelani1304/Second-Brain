@@ -59,6 +59,7 @@ const Sidebar = () => {
                     <h1 className="text-4xl font-semibold ml-2">Brainly</h1>
                 </div>
                 <div className="mt-8">
+                    <SidebarItem text="All"/>
                     <SidebarItem text="Youtube" icons={<Yt />} />
                     <SidebarItem text="Tweet" icons={<Tweet />} />
                 </div>
