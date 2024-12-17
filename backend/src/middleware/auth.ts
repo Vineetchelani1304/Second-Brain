@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
-
-const JWT_PASS = "vineet"; 
+import 'dotenv/config'
+const JWT_PASS = process.env.JWT_PASSWORD ||"vineet"; 
 
 export const userMiddleware = (req: Request, res: Response, next: NextFunction):void => {
     const token = req.headers["authorization"];

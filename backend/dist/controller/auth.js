@@ -16,7 +16,8 @@ exports.signin = exports.signup = void 0;
 const db_1 = require("../db");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const JWT_PASS = 'vineet';
+require("dotenv/config");
+const JWT_PASS = process.env.JWT_PASSWORD || "vineet";
 const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const username = req.body.username;

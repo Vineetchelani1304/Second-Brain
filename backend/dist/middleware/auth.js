@@ -5,7 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.userMiddleware = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const JWT_PASS = "vineet";
+require("dotenv/config");
+const JWT_PASS = process.env.JWT_PASSWORD || "vineet";
 const userMiddleware = (req, res, next) => {
     const token = req.headers["authorization"];
     if (!token) {

@@ -1,7 +1,8 @@
 import { ReactElement, useEffect } from 'react';
-import { Share } from '../icons/share';
+// import { Share } from '../icons/share';
 import { Delete } from '../icons/Delete';
-import axios from 'axios';
+// import axios from 'axios';
+// import ShareContent from './ShareContent';
 
 interface CardProps {
     title: string;
@@ -9,8 +10,9 @@ interface CardProps {
     link: string;
     icon?: ReactElement;
     cardId?: string;
-    onDelete?: (contentId: string) => void; // **Added onDelete prop**
+    onDelete?: (contentId: string) => void; 
 }
+
 
 const Card = (props: CardProps) => {
     useEffect(() => {
@@ -21,15 +23,17 @@ const Card = (props: CardProps) => {
             document.body.appendChild(script);
 
             return () => {
-                document.body.removeChild(script); // Clean up the script when component unmounts
+                document.body.removeChild(script); 
             };
         }
     }, [props.type]);
 
-    // **Handle content deletion**
+    
     const deleteContent = () => {
-        props.onDelete(props.cardId); // Call the parent's delete function with the cardId
+        props.onDelete(props.cardId); 
     };
+
+    // const [cardShare,setCardShare] = useState(false)
 
     return (
         <div className="max-w-[300px] hover:scale-105 transition-all duration-300 w-full p-4 text-slate-200 bg-black rounded-2xl shadow-md border border-gray-700">
@@ -38,9 +42,9 @@ const Card = (props: CardProps) => {
                     <span className="font-semibold text-xl">{props.title}</span>
                 </div>
                 <div className="flex gap-3 items-center">
-                    <div className="hover:cursor-pointer">
+                    {/* <div className="hover:cursor-pointer" onClick={<ShareContent/>}>
                         <Share />
-                    </div>
+                    </div> */}
                     <div className="hover:cursor-pointer" onClick={deleteContent}>
                         <Delete />
                     </div>

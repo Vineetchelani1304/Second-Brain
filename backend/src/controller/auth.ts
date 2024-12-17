@@ -2,8 +2,8 @@ import express, {Request,Response} from "express";
 import { UserModel } from "../db";
 import bcrypt from "bcrypt";
 import jwt from 'jsonwebtoken'
-
-const JWT_PASS = 'vineet'
+import 'dotenv/config'
+const JWT_PASS = process.env.JWT_PASSWORD || "vineet"
 export const signup= async(req:Request, res:Response)=>{
     try {
         const username= req.body.username;

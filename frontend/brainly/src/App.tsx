@@ -4,6 +4,7 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ShareComponent from "./pages/ShareComponent";
+import LandingPage from "./pages/LandingPage";
 
 const App = () => {
   const sharedLink = localStorage.getItem("link");
@@ -22,6 +23,7 @@ const App = () => {
         />
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/share/:link" element={<ShareComponent />} /> {/* Always register this route */}
       </Routes>
     </BrowserRouter>

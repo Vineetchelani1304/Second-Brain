@@ -43,7 +43,7 @@
 
 
 
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { Brainly } from "../icons/Brainly";
 import { Logout } from "../icons/Logout";
 import { Tweet } from "../icons/Tweet";
@@ -66,7 +66,9 @@ const Sidebar: React.FC<SidebarProps> = ({ setFilter }) => {
     return (
         <div className="w-[15%] h-screen fixed top-0 left-0 flex flex-col justify-between bg-black text-white border-r">
             <div>
-                <div className="flex justify-center items-center mt-4">
+                <div className="flex hover:cursor-pointer justify-center items-center mt-4" onClick={()=>{
+                   navigate("/") 
+                }}>
                     <Brainly />
                     <h1 className="text-4xl font-semibold ml-2">Brainly</h1>
                 </div>
