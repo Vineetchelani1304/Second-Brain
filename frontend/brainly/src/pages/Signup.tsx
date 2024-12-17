@@ -33,11 +33,7 @@ const Signup = () => {
             }
         }
 
-        // alert("signUp successfull")
-
-
     }
-
     return (
         <div className=" h-screen w-screen bg-black flex flex-col gap-4 items-center justify-center">
             <h1 className=" text-4xl font-bold text-white">Signup</h1>
@@ -54,7 +50,12 @@ const Signup = () => {
                     <label className=" font-semibold text-white" htmlFor="pass">Password</label>
                     <input type="password" ref={passwordRef} id="pass" placeholder="Password" className="rounded-lg p-2 outline-none" />
                 </div>
-                <button className=" w-full mt-6 outline-white p-2 bg-gray-600 font-semibold rounded-lg" onClick={signup}>{load? "Loading..." : "Signup"}</button>
+                <div className=" flex justify-start hover:cursor-pointer text-blue-600 font-light " onClick={()=>{
+                    Navigate("/signin")
+                }}>
+                    Already Have an account ?
+                </div>
+                <button className=" w-full mt-1 outline-white p-2 bg-gray-600 font-semibold rounded-lg" onClick={signup}>{load? "Loading..." : "Signup"}</button>
             </div>
 
         </div>

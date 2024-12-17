@@ -47,7 +47,12 @@ const Signin = () => {
                     <label className=" font-semibold text-white" htmlFor="pass">Password</label>
                     <input type="password" ref={passRef} id="pass" placeholder="Password" className=" rounded-lg p-2 text-black outline-none" />
                 </div>
-                <button onClick={login} className=" p-3 transition-all w-full mt-5 bg-gray-600 font-semibold rounded-lg">{load ? "Loading..." : "Login"}</button>
+                <div className=" flex justify-start hover:cursor-pointer text-blue-600 font-light " onClick={()=>{
+                    Navigate("/signup")
+                }}>
+                    Don't have an account ?
+                </div>
+                <button onClick={login} className=" p-3 transition-all w-full mt-1 bg-gray-600 font-semibold rounded-lg">{load ? "Loading..." : "Login"}</button>
             </div>
 
         </div>

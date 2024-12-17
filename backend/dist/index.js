@@ -8,9 +8,10 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const auth_routest_1 = __importDefault(require("./routes/auth.routest"));
 const content_route_1 = __importDefault(require("./routes/content.route"));
 const cors_1 = __importDefault(require("cors"));
+require("dotenv/config");
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
-const port = 8888;
+const port = process.env.PORT || 8888;
 mongoose_1.default.connect("mongodb+srv://vineetchelani:vineetttt@vineet.3wknhd0.mongodb.net/secondbrain");
 app.use(express_1.default.json());
 app.get('/', (req, res) => {
