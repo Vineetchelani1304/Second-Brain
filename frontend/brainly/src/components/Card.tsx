@@ -51,7 +51,7 @@ const Card = (props: CardProps) => {
                 </div>
             </div>
 
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center max-h-[300px] overflow-visible overflow-x-hidden rounded-xl items-center">
                 {props.type === "Youtube" && (
                     <iframe
                         className="w-full h-full rounded-md"
