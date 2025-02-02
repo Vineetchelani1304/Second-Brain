@@ -21,7 +21,7 @@ const Signup = () => {
 
         if (!load) {
             setLoad(true)
-            const res = await axios.post("http://localhost:8888/auth/signup", {
+            const res = await axios.post("http://localhost:8000/auth/signup", {
                 username: username,
                 email: email,
                 password: password

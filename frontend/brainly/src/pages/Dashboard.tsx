@@ -6,18 +6,20 @@ import Button from "../components/Button";
 import { Plusicon } from "../icons/Plusicon";
 import Sidebar from "../components/Sidebar";
 import { Share } from "../icons/share";
+import { Menu, X } from "lucide-react";
 import ShareContent from "../components/ShareContent";
 
 const Dashboard: React.FC = () => {
     const [modalOpen, setModal] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
     const [content, setContent] = useState([]);
     const [filter, setFilter] = useState("All");
 
     // Fetch the content initially
     const fetchContent = async () => {
         try {
-            const response = await axios.get("http://localhost:8888/content/getContent", {
+            const response = await axios.get("http://localhost:8000/content/getContent", {
                 headers: {
                     Authorization: localStorage.getItem("token"),
                 },
@@ -30,7 +32,7 @@ const Dashboard: React.FC = () => {
 
     const deleteContent = async (contentId: string) => {
         try {
-            const response = await axios.delete("http://localhost:8888/content/deleteContent", {
+            const response = await axios.delete("http://localhost:8000/content/deleteContent", {
                 headers: {
                     Authorization: localStorage.getItem("token"),
                 },
@@ -49,19 +51,53 @@ const Dashboard: React.FC = () => {
     };
 
     useEffect(() => {
-        fetchContent(); 
+        fetchContent();
     }, []);
 
     const filteredContent = filter === "All" ? content : content.filter((item) => item.type === filter);
 
     return (
-        <div className="bg-black h-screen flex">
-            <Sidebar setFilter={setFilter} /> {/* Pass setFilter to Sidebar */}
-            <div className="flex-1 h-screen pt-2 px-3 ml-[15%] overflow-auto">
-                <CreateContent open={modalOpen} onClose={() => setModal(false)} onContentAdded={addContent} />
-                <ShareContent isOpen={isOpen} setIsOpen={() =>setIsOpen(false)} />
-                <div className="flex justify-between">
-                    <h2 className="font-semibold text-3xl ml-1 text-slate-200">{filter} Content</h2>
+        <div className="bg-black h-screen flex relative">
+            {/* Sidebar */}
+            <div
+                className={`fixed top-0 left-0 h-full bg-gray-900 z-50 transform transition-transform duration-300 md:static md:translate-x-0 ${
+                    sidebarOpen ? "translate-x-0" : "-translate-x-full"
+                } w-64`}
+            >
+                <Sidebar setFilter={setFilter} /> {/* Pass setFilter to Sidebar */}
+            </div>
+
+            {/* Overlay for Sidebar on small screens */}
+            {sidebarOpen && (
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
+                    onClick={() => setSidebarOpen(false)}
+                ></div>
+            )}
+
+            <div className="flex-1 h-screen pt-2 px-3 overflow-auto">
+                {/* Header */}
+                <div className="flex justify-between items-center mb-4 md:hidden">
+                    <button
+                        onClick={() => setSidebarOpen(!sidebarOpen)}
+                        className="text-white p-2"
+                    >
+                        {sidebarOpen ? <X size={28} /> : <Menu size={28} />}
+                    </button>
+                    <h2 className="font-semibold text-2xl text-slate-200">{filter} Content</h2>
+                </div>
+
+                {/* Modals */}
+                <CreateContent
+                    open={modalOpen}
+                    onClose={() => setModal(false)}
+                    onContentAdded={addContent}
+                />
+                <ShareContent isOpen={isOpen} setIsOpen={() => setIsOpen(false)} />
+
+                {/* Header for larger screens */}
+                <div className="hidden md:flex justify-between">
+                    <h2 className="font-semibold text-3xl text-slate-200">{filter} Content</h2>
                     <div className="flex justify-end gap-3">
                         <Button
                             variant="primary"
@@ -77,6 +113,8 @@ const Dashboard: React.FC = () => {
                         />
                     </div>
                 </div>
+
+                {/* Content */}
                 <div className="flex flex-wrap gap-4 mt-6">
                     {filteredContent.length === 0 ? (
                         <p className="text-white font-semibold text-xl">No content available.</p>

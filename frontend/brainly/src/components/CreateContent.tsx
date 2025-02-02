@@ -39,7 +39,7 @@ const CreateContent = ({ open, onClose }: create) => {
             }
 
             const res = await axios.post(
-                "http://localhost:8888/content/createContent",
+                "http://localhost:8000/content/createContent",
                 {
                     title,
                     link,

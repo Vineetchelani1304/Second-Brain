@@ -7,7 +7,7 @@ import 'dotenv/config'
 const db_url = process.env.DB_LINK || "mongodb://localhost:27017/brainly";
 const app = express();
 app.use(cors());
-const port = process.env.PORT || 8888;
+const port = process.env.PORT || 8000;
 mongoose.connect(db_url)
 app.use(express.json());
 app.get('/', (req, res) => {

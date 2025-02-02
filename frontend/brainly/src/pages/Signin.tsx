@@ -18,7 +18,7 @@ const Signin = () => {
 
         if (!load) {
             setLoad(true)
-            const res = await axios.post("http://localhost:8888/auth/signin", {
+            const res = await axios.post("http://localhost:8000/auth/signin", {
                 email: email,
                 password: password
             })

@@ -56,7 +56,7 @@ const ShareComponent = () => {
   useEffect(() => {
     const fetchShareContent = async () => {
       try {
-        const response = await axios.get(`http://localhost:8888/content${link}`);
+        const response = await axios.get(`http://localhost:8000/content${link}`);
         // console.log("Fetched content:", response);
         setShareContent(response.data.content); // Assuming data.data is an array
       } catch (error) {
