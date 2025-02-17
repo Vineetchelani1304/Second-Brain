@@ -17,7 +17,7 @@ const ShareContent = ({ isOpen, setIsOpen }: ShareLinkProps) => {
         setIsLoading(true);
         try {
             const res = await axios.post(
-                "http://localhost:8888/content/share",
+                "http://localhost:8000/content/share",
                 { share: true },
                 {
                     headers: {
